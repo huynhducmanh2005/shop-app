@@ -17,7 +17,7 @@ public class ProductResponse {
     private String name;
     private float price;
     private String thumbnail;
-    private long categoryId;
+    private CategoryResponse category;
     private String description;
 
     public static ProductResponse fromProduct(Product product) {
@@ -26,7 +26,7 @@ public class ProductResponse {
                 .name(product.getName())
                 .price(product.getPrice())
                 .thumbnail(product.getThumbnail())
-                .categoryId(product.getCategoryId())
+                .category(CategoryResponse.fromCategory(product.getCategory()))
                 .description(product.getDescription())
                 .build();
     }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.shopapp.DTO.OrderDTO;
 import com.project.shopapp.Model.Order;
+import com.project.shopapp.Response.OrderResponse;
 import com.project.shopapp.Service.Services.OrderService;
 
 import jakarta.validation.Valid;
@@ -29,14 +30,14 @@ public class OrderController {
     @GetMapping("/")
     public ResponseEntity<?> getAllOrders() {
         List<Order> listOrder = orderService.getAllOrder();
-        return ResponseEntity.ok(listOrder);
+        return ResponseEntity.ok(listOrder.stream().map(OrderResponse::fromOder).toList());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getByOrderId(@PathVariable long id) {
         try {
             Order order = orderService.getByOrderId(id);
-            return ResponseEntity.ok(order);
+            return ResponseEntity.ok(OrderResponse.fromOder(order));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
@@ -64,7 +65,7 @@ public class OrderController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<?> createOrder(@Valid  @RequestBody OrderDTO orderDTO){
+    public ResponseEntity<?> createOrder(@Valid @RequestBody OrderDTO orderDTO) {
         try {
             Order order = orderService.createOrder(orderDTO);
             return ResponseEntity.ok(order);

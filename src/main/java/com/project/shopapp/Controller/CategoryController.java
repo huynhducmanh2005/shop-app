@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter
 
 import com.project.shopapp.DTO.CategoryDTO;
 import com.project.shopapp.Model.Category;
+import com.project.shopapp.Response.CategoryResponse;
 import com.project.shopapp.Service.Services.CategoryService;
 
 import jakarta.validation.Valid;
@@ -33,14 +34,14 @@ public class CategoryController {
 
     public ResponseEntity<?> getAllCategory() {
         List<Category> listCategory = categoryService.getAllCategory();
-        return ResponseEntity.ok(listCategory);
+        return ResponseEntity.ok(listCategory.stream().map(CategoryResponse::fromCategory).toList());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getByCategoryId(@PathVariable long id) {
         try {
             Category category = categoryService.getByCategoryId(id);
-            return ResponseEntity.ok(category);
+            return ResponseEntity.ok(CategoryResponse.fromCategory(category));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }

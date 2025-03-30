@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.shopapp.DTO.OrderDetailDTO;
 import com.project.shopapp.Model.OrderDetail;
+import com.project.shopapp.Response.OrderDetailResponse;
 import com.project.shopapp.Service.Services.OrderDetailService;
 
 import jakarta.validation.Valid;
@@ -29,14 +30,14 @@ public class OrderDetailController {
     @GetMapping("/")
     public ResponseEntity<?> getAllOrderDetails() {
         List<OrderDetail> listOrderDetail = orderDetailService.getAllOrderDetails();
-        return ResponseEntity.ok(listOrderDetail);
+        return ResponseEntity.ok(listOrderDetail.stream().map(OrderDetailResponse::fromOrderDetail).toList());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getByOrderDetailId(@PathVariable long id) {
         try {
             OrderDetail orderDetail = orderDetailService.getByOrderDetailId(id);
-            return ResponseEntity.ok(orderDetail);
+            return ResponseEntity.ok(OrderDetailResponse.fromOrderDetail(orderDetail));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }

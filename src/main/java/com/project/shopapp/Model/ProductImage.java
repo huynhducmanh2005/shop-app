@@ -13,29 +13,22 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table(name = "products")
+@Table(name = "product_images")
 @Data
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
 @Entity
-public class Product extends BaseEntity {
+public class ProductImage extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "image_url", length = 300)
+    private String imageUrl;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "price")
-    private float price;
-
-    @Column(name = "thumbnail")
-    private String thumbnail;
     @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @JoinColumn(name = "product_id")
+    private Product product;
 
-    @Column(name = "description")
-    private String description;
 }

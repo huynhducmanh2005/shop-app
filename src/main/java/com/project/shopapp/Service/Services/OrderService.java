@@ -1,5 +1,6 @@
 package com.project.shopapp.Service.Services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,21 +52,22 @@ public class OrderService implements IOderService {
             userRepository.findById(orderDTO.getUserId())
                     .orElseThrow(() -> new Exception("userId không tồn tại"));
             Order order = Order.builder()
-                    .userId(orderDTO.getUserId())
+                    .user(userRepository.findById(orderDTO.getUserId())
+                            .orElseThrow(() -> new Exception("userId không tồn tại")))
                     .fullName(orderDTO.getFullName())
                     .email(orderDTO.getEmail())
                     .phoneNumber(orderDTO.getPhoneNumber())
                     .note(orderDTO.getNote())
                     .status(orderDTO.getStatus())
                     .address(orderDTO.getAddress())
-                    .orderDate(null)
+                    .orderDate(LocalDateTime.now())
                     .totalMoney(orderDTO.getTotalMoney())
-                    .shippingAddress(null)
-                    .shippingMethod(null)
-                    .shippingDate(null)
+                    .shippingAddress(orderDTO.getShippingAddress())
+                    .shippingMethod(orderDTO.getShippingMethod())
+                    .shippingDate(LocalDateTime.now())
                     .trackingNumber(orderDTO.getTrackingNumber())
                     .paymentMethod(orderDTO.getPaymentMethod())
-                    .isActive(false)
+                    .isActive(true)
                     .build();
             return orderRepository.save(order);
 
@@ -81,21 +83,22 @@ public class OrderService implements IOderService {
                     .orElseThrow(() -> new Exception("Mã id order này không tìm thấy để sửa"));
             userRepository.findById(orderDTO.getUserId())
                     .orElseThrow(() -> new Exception("userId không tồn tại"));
-            order.setUserId(orderDTO.getUserId());
+            order.setUser(userRepository.findById(orderDTO.getUserId())
+                    .orElseThrow(() -> new Exception("userId không tồn tại")));
             order.setFullName(orderDTO.getFullName());
             order.setEmail(orderDTO.getEmail());
             order.setPhoneNumber(orderDTO.getPhoneNumber());
             order.setNote(orderDTO.getNote());
             order.setStatus(orderDTO.getStatus());
             order.setAddress(orderDTO.getAddress());
-            order.setOrderDate(null);
+            order.setOrderDate(LocalDateTime.now());
             order.setTotalMoney(orderDTO.getTotalMoney());
             order.setShippingMethod(orderDTO.getShippingMethod());
             order.setShippingAddress(orderDTO.getShippingAddress());
-            order.setShippingDate(null);
+            order.setShippingDate(LocalDateTime.now());
             order.setTrackingNumber(orderDTO.getTrackingNumber());
             order.setPaymentMethod(orderDTO.getPaymentMethod());
-            order.setActive(false);
+            order.setActive(true);
             return orderRepository.save(order);
 
         } catch (Exception e) {

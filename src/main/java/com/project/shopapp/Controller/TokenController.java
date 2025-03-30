@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.shopapp.DTO.TokenDTO;
 import com.project.shopapp.Model.Token;
+import com.project.shopapp.Response.TokenResponse;
 import com.project.shopapp.Service.Services.TokenService;
 
 import jakarta.validation.Valid;
@@ -29,14 +30,14 @@ public class TokenController {
     @GetMapping("/")
     public ResponseEntity<?> getAllTokens() {
         List<Token> listToken = tokenService.getAllToken();
-        return ResponseEntity.ok(listToken);
+        return ResponseEntity.ok(listToken.stream().map(TokenResponse::fromToken).toList());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getByTokenId(@PathVariable long id) {
         try {
             Token token = tokenService.getByTokenId(id);
-            return ResponseEntity.ok(token);
+            return ResponseEntity.ok(TokenResponse.fromToken(token));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }

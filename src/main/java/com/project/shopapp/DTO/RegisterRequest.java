@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -16,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDTO {
+public class RegisterRequest {
     @NotBlank(message = "Số điện thoại không được bỏ trống")
     @JsonProperty("phone_number")
     private String phoneNumber;
@@ -25,7 +24,7 @@ public class UserDTO {
     @JsonProperty("email")
     private String email;
 
-    @NotBlank(message = "Địa chỉ không được bỏ trống")
+    @NotBlank(message = "địa chỉ không được bỏ trống")
     @JsonProperty("address")
     private String address;
 
@@ -33,19 +32,22 @@ public class UserDTO {
     @JsonProperty("password")
     private String password;
 
-    @NotNull(message = "roleId không được bỏ trống")
+    @NotBlank(message = "Nhập lại mật khẩu không được bỏ trống")
+    @JsonProperty("retypePassword")
+    private String retypePassword;
+
     @JsonProperty("role_id")
-    private long roleId;
+    private long roleId = 1;
 
     @JsonProperty("is_active")
-    private boolean isActive;
+    private boolean isActive = true;
 
     @JsonProperty("last_login_at")
     private LocalDateTime lastLoginAt;
 
     @JsonProperty("facebook_account_id")
-    private long facebookAccountId;
+    private long facebookAccountId = 0;
 
     @JsonProperty("google_account_id")
-    private long googleAccountId;
+    private long googleAccountId = 0;
 }

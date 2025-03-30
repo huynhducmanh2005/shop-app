@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.shopapp.DTO.RoleDTO;
 import com.project.shopapp.Model.Role;
+import com.project.shopapp.Response.RoleResponse;
 import com.project.shopapp.Service.Services.RoleService;
 
 import jakarta.validation.Valid;
@@ -30,14 +31,14 @@ public class RoleController {
     @GetMapping("/")
     public ResponseEntity<?> getAllRoles() {
         List<Role> listRole = roleService.getAllRole();
-        return ResponseEntity.ok(listRole);
+        return ResponseEntity.ok(listRole.stream().map(RoleResponse::fromRole).toList());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getByRoleId(@PathVariable long id) {
         try {
             Role role = roleService.getByRoleId(id);
-            return ResponseEntity.ok(role);
+            return ResponseEntity.ok(RoleResponse.fromRole(role));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }

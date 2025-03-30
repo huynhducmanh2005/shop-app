@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.shopapp.DTO.RegisterRequest;
 import com.project.shopapp.DTO.UserDTO;
 import com.project.shopapp.Model.User;
+import com.project.shopapp.Response.UserResponse;
 import com.project.shopapp.Service.Services.UserService;
 
 import jakarta.validation.Valid;
@@ -30,14 +32,14 @@ public class UserController {
     @GetMapping("/")
     public ResponseEntity<?> getAllUsers() {
         List<User> listUser = userService.getAllUser();
-        return ResponseEntity.ok(listUser);
+        return ResponseEntity.ok(listUser.stream().map(UserResponse::fromUser).toList());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getByUserId(@PathVariable long id) {
         try {
             User user = userService.getByUserId(id);
-            return ResponseEntity.ok(user);
+            return ResponseEntity.ok(UserResponse.fromUser(user));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
@@ -64,9 +66,9 @@ public class UserController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<?> createUser(@Valid @RequestBody UserDTO userDTO) {
+    public ResponseEntity<?> createUser(@Valid @RequestBody RegisterRequest registerRequest) {
         try {
-            User user = userService.createUser(userDTO);
+            User user = userService.createUser(registerRequest);
             return ResponseEntity.ok(user);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

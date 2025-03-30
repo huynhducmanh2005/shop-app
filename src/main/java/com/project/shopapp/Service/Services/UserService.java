@@ -1,10 +1,12 @@
 package com.project.shopapp.Service.Services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.shopapp.DTO.RegisterRequest;
 import com.project.shopapp.DTO.UserDTO;
 import com.project.shopapp.Model.User;
 import com.project.shopapp.Repository.RoleRepository;
@@ -35,20 +37,21 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User createUser(UserDTO userDTO) throws Exception {
+    public User createUser(RegisterRequest registerRequest) throws Exception {
         try {
-            roleRepository.findById(userDTO.getRoleId())
+            roleRepository.findById(registerRequest.getRoleId())
                     .orElseThrow(() -> new Exception("Mã roleid này không tồn tại"));
             User user = User.builder()
-                    .phoneNumber(userDTO.getPhoneNumber())
-                    .email(userDTO.getEmail())
-                    .address(userDTO.getAddress())
-                    .password(userDTO.getPassword())
-                    .roleId(userDTO.getRoleId())
-                    .isActive(false)
-                    .facebookAccountId(userDTO.getFacebookAccountId())
-                    .lastLoginAt(userDTO.getLastLoginAt())
-                    .googleAccountId(userDTO.getGoogleAccountId())
+                    .phoneNumber(registerRequest.getPhoneNumber())
+                    .email(registerRequest.getEmail())
+                    .address(registerRequest.getAddress())
+                    .password(registerRequest.getPassword())
+                    .role(roleRepository.findById(registerRequest.getRoleId())
+                            .orElseThrow(() -> new Exception("Mã roleid này không tồn tại")))
+                    .isActive(true)
+                    .facebookAccountId(registerRequest.getFacebookAccountId())
+                    .lastLoginAt(null)
+                    .googleAccountId(registerRequest.getGoogleAccountId())
                     .build();
             return userRepository.save(user);
         } catch (Exception e) {
@@ -67,11 +70,12 @@ public class UserService implements IUserService {
             user.setEmail(userDTO.getEmail());
             user.setAddress(userDTO.getAddress());
             user.setPassword(userDTO.getPassword());
-            user.setRoleId(userDTO.getRoleId());
-            user.setActive(false);
-            user.setLastLoginAt(null);
-            user.setFacebookAccountId(id);
-            user.setGoogleAccountId(id);
+            user.setRole(roleRepository.findById(userDTO.getRoleId())
+                    .orElseThrow(() -> new Exception("Mã roleid này không tồn tại")));
+            user.setActive(userDTO.isActive());
+            user.setLastLoginAt(LocalDateTime.now());
+            user.setFacebookAccountId(user.getFacebookAccountId());
+            user.setGoogleAccountId(user.getGoogleAccountId());
             return userRepository.save(user);
         } catch (Exception e) {
             throw new Exception(e.getMessage());

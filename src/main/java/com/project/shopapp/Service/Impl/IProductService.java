@@ -16,4 +16,5 @@ public interface IProductService {
 
     Product updateProduct(ProductDTO productDTO, long id) throws Exception;
 
+    void fakerProduct() throws Exception;
 }

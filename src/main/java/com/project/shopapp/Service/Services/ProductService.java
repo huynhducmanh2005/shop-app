@@ -1,10 +1,14 @@
 package com.project.shopapp.Service.Services;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.github.javafaker.Faker;
 import com.project.shopapp.DTO.ProductDTO;
 import com.project.shopapp.Model.Product;
 import com.project.shopapp.Repository.CategoryRepository;
@@ -63,7 +67,8 @@ public class ProductService implements IProductService {
                     .thumbnail(productDTO.getThumbnail())
                     .price(productDTO.getPrice())
                     .description(productDTO.getDescription())
-                    .categoryId(productDTO.getCategoryId())
+                    .category(categoryRepository.findById(productDTO.getCategoryId())
+                            .orElseThrow(() -> new Exception("Mã loại hàng này không tồn tại")))
                     .build();
             return productRepository.save(product);
         } catch (Exception e) {
@@ -80,7 +85,8 @@ public class ProductService implements IProductService {
                     .orElseThrow(() -> new Exception("Mã loại hàng này không tồn tại "));
             product.setName(productDTO.getName());
             product.setThumbnail(productDTO.getThumbnail());
-            product.setCategoryId(productDTO.getCategoryId());
+            product.setCategory(categoryRepository.findById(productDTO.getCategoryId())
+                    .orElseThrow(() -> new Exception("Mã loại hàng này không tồn tại")));
             product.setDescription(productDTO.getDescription());
             product.setPrice(productDTO.getPrice());
             return productRepository.save(product);
@@ -89,4 +95,25 @@ public class ProductService implements IProductService {
         }
     }
 
+    @Override
+    public void fakerProduct() throws Exception {
+        try {
+
+            Faker faker = new Faker();
+            for (int i = 0; i < 20; i++) {
+                Product product = Product.builder()
+                        .name(faker.commerce().productName())
+                        .price(faker.number().numberBetween(1, 10) * 10000)
+                        .thumbnail(null)
+                        .category(categoryRepository.findById(Long.valueOf(faker.number().numberBetween(4, 9)))
+                                .orElseThrow(() -> new Exception("Loại hàng này không tồn tại")))
+                        .description(faker.lorem().sentence())
+                        .build();
+                productRepository.save(product);
+            }
+
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
 }

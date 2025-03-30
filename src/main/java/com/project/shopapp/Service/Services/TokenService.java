@@ -56,7 +56,8 @@ public class TokenService implements ITokenService {
                     .expirationDate(tokenDTO.getExpirationDate())
                     .expired(false)
                     .revoked(false)
-                    .userId(tokenDTO.getUserId())
+                    .user(userRepository.findById(tokenDTO.getUserId())
+                            .orElseThrow(() -> new Exception("user id nay không tồn tại")))
                     .build();
             return tokenRepository.save(token);
         } catch (Exception e) {
@@ -76,7 +77,8 @@ public class TokenService implements ITokenService {
             token.setExpirationDate(tokenDTO.getExpirationDate());
             token.setExpired(false);
             token.setRevoked(false);
-            token.setUserId(tokenDTO.getUserId());
+            token.setUser(userRepository.findById(tokenDTO.getUserId())
+                    .orElseThrow(() -> new Exception("user id nay không tồn tại")));
             return tokenRepository.save(token);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
