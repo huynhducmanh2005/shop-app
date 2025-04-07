@@ -16,24 +16,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TokenResponse {
-    private long id;
-    private String token;
-    private String tokenType;
-    private LocalDateTime expirationDate;
-    private boolean revoked;
-    private boolean expired;
+    private String accessToken;
+    private String refreshToken;
+    private String tokenType = "Bearer";
     private UserResponse user;
-
-    public static TokenResponse fromToken(Token token) {
-        return TokenResponse.builder()
-                .id(token.getId())
-                .token(token.getToken())
-                .tokenType(token.getTokenType())
-                .expirationDate(token.getExpirationDate())
-                .revoked(token.isRevoked())
-                .expired(token.isExpired())
-                .user(UserResponse.fromUser(token.getUser()))
-                .build();
-
-    }
 }
