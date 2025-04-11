@@ -1,0 +1,173 @@
+<style>
+  /* Đảm bảo reset các giá trị mặc định */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Tùy chỉnh navbar */
+  .navbar-default {
+    background-color: #ee4d2d; /* Màu nền cam giống Shopee */
+    border: none;
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+
+  /* Logo/thương hiệu */
+  .navbar-brand {
+    color: white !important;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 15px 20px;
+  }
+
+  .navbar-brand:hover {
+    color: #f5f5f5 !important;
+  }
+
+  /* Nút toggle cho mobile */
+  .navbar-toggle {
+    border: 1px solid white;
+  }
+
+  .navbar-toggle .icon-bar {
+    background-color: white;
+  }
+
+  /* Các mục trong menu */
+  .navbar-nav > li > a {
+    color: white !important;
+    font-size: 16px;
+    padding: 15px 20px;
+    transition: background-color 0.3s ease;
+  }
+
+  .navbar-nav > li > a:hover,
+  .navbar-nav > li > a:focus {
+    background-color: #d43f21; /* Màu cam đậm hơn khi hover */
+  }
+
+  /* Mục active */
+  .navbar-nav > li.active > a {
+    background-color: #d43f21 !important;
+    color: white !important;
+  }
+
+  /* Form tìm kiếm */
+  .navbar-form {
+    margin: 8px 0;
+  }
+
+  .navbar-form .form-group {
+    display: inline-block;
+  }
+
+  .navbar-form .form-control {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 200px;
+    padding: 5px 10px;
+  }
+
+  .navbar-form .btn-default {
+    background-color: white;
+    border: 1px solid #ddd;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+
+  .navbar-form .btn-default:hover {
+    background-color: #f5f5f5;
+  }
+
+  /* Dropdown menu */
+  .navbar-nav .dropdown-toggle {
+    color: white !important;
+  }
+
+  .navbar-nav .dropdown-menu {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-nav .dropdown-menu > li > a {
+    color: #333 !important;
+    padding: 10px 20px;
+  }
+
+  .navbar-nav .dropdown-menu > li > a:hover,
+  .navbar-nav .dropdown-menu > li > a:focus {
+    background-color: #f5f5f5;
+    color: #ee4d2d !important;
+  }
+
+  /* Responsive cho mobile */
+  @media (max-width: 767px) {
+    .navbar-nav {
+      background-color: #ee4d2d;
+    }
+
+    .navbar-nav > li > a {
+      padding: 10px 20px;
+    }
+
+    .navbar-form {
+      margin: 10px 20px;
+    }
+
+    .navbar-form .form-control {
+      width: 100%;
+    }
+  }
+</style>
+<nav class="navbar navbar-default" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button
+      type="button"
+      class="navbar-toggle"
+      data-toggle="collapse"
+      data-target=".navbar-ex1-collapse"
+    >
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Huynh Dm</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Category</a></li>
+      <li><a href="../public/product.html">Product</a></li>
+    </ul>
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search" />
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">AAA</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+          >Dropdown <b class="caret"></b
+        ></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Register</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <!-- /.navbar-collapse -->
+</nav>

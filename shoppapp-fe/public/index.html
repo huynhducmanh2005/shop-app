@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Title Page</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+  
+    h1.text-center {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 40px 0 30px;
+      color: #2c3e50;
+    }
+  
+    .jumbotron {
+      background: linear-gradient(to right, #74ebd5, #acb6e5);
+      color: #fff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+  
+    .jumbotron h1 {
+      font-size: 36px;
+      font-weight: bold;
+    }
+  
+    .jumbotron p {
+      font-size: 18px;
+    }
+  
+    .btn-primary {
+      background: #2980b9;
+      border: none;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  
+    .btn-primary:hover {
+      background: #1abc9c;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(26, 188, 156, 0.4);
+    }
+  
+    h2 {
+      margin-top: 60px;
+      margin-bottom: 30px;
+      color: #34495e;
+      font-weight: 600;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+    }
+  
+    .thumbnail {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #fff;
+    }
+  
+    .thumbnail:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+  
+    .thumbnail img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-bottom: 1px solid #eee;
+    }
+  
+    .caption {
+      padding: 20px;
+    }
+  
+    .caption h3 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+  
+    .caption p {
+      font-size: 16px;
+      color: #666;
+    }
+  
+    /* Responsive spacing tweaks */
+    @media (max-width: 767px) {
+      h1.text-center {
+        font-size: 32px;
+      }
+  
+      .jumbotron {
+        padding: 30px 20px;
+      }
+  
+      .caption {
+        padding: 15px;
+      }
+    }
+  </style>
+  
+  <body>
+    <div id="header-placeholder"></div>
+    <h1 class="text-center">Shopp Của Mạnh</h1>
+
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Chào mừng bạn đến với tôi</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
+          ex ipsum
+        </p>
+        <a type="button" class="btn btn-primary btn-lg">Mua sắm ngay</a>
+      </div>
+
+      <h2>Danh mục sản phẩm</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <img src="https://picsum.photos/id/2/300/200" alt="Thời trang" />
+            <div class="caption">
+              <h3>Thời trang</h3>
+              <p>Các loại thời trang mới nhất</p>
+              <a type="button" class="btn btn-primary">Xem thêm</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <img src="https://picsum.photos/id/200/300/200" alt="Thời trang" />
+            <div class="caption">
+              <h3>Thời trang</h3>
+              <p>Các loại thời trang mới nhất</p>
+              <a type="button" class="btn btn-primary">Xem thêm</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <img src="https://picsum.photos/id/100/300/200" alt="Thời trang" />
+            <div class="caption">
+              <h3>Thời trang</h3>
+              <p>Các loại thời trang mới nhất</p>
+              <a type="button" class="btn btn-primary">Xem thêm</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2>Sản phẩm nổi bật</h2>
+      <div class="row">
+        <div class="col-sm-6 col-md-3">
+          <div class="thumbnail">
+            <img src="https://picsum.photos/id/2/300/200" alt="Thời trang" />
+            <div class="caption">
+              <h3>Thời trang</h3>
+              <p>Các loại thời trang mới nhất</p>
+              <a type="button" class="btn btn-primary">Xem thêm</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+              <img src="https://picsum.photos/id/2/300/200" alt="Thời trang" />
+              <div class="caption">
+                <h3>Thời trang</h3>
+                <p>Các loại thời trang mới nhất</p>
+                <a type="button" class="btn btn-primary">Xem thêm</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+              <img src="https://picsum.photos/id/2/300/200" alt="Thời trang" />
+              <div class="caption">
+                <h3>Thời trang</h3>
+                <p>Các loại thời trang mới nhất</p>
+                <a type="button" class="btn btn-primary">Xem thêm</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+              <img src="https://picsum.photos/id/2/300/200" alt="Thời trang" />
+              <div class="caption">
+                <h3>Thời trang</h3>
+                <p>Các loại thời trang mới nhất</p>
+                <a type="button" class="btn btn-primary">Xem thêm</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+              <img src="https://picsum.photos/id/2/300/200" alt="Thời trang" />
+              <div class="caption">
+                <h3>Thời trang</h3>
+                <p>Các loại thời trang mới nhất</p>
+                <a type="button" class="btn btn-primary">Xem thêm</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+              <img src="https://picsum.photos/id/2/300/200" alt="Thời trang" />
+              <div class="caption">
+                <h3>Thời trang</h3>
+                <p>Các loại thời trang mới nhất</p>
+                <a type="button" class="btn btn-primary">Xem thêm</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+              <img src="https://picsum.photos/id/2/300/200" alt="Thời trang" />
+              <div class="caption">
+                <h3>Thời trang</h3>
+                <p>Các loại thời trang mới nhất</p>
+                <a type="button" class="btn btn-primary">Xem thêm</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+              <img src="https://picsum.photos/id/2/300/200" alt="Thời trang" />
+              <div class="caption">
+                <h3>Thời trang</h3>
+                <p>Các loại thời trang mới nhất</p>
+                <a type="button" class="btn btn-primary">Xem thêm</a>
+              </div>
+            </div>
+          </div>
+          
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $("#header-placeholder").load("../common/header.html");
+        $("#footer-placeholder").load("../common/footer.html");
+      });
+    </script>
+  </body>
+</html>

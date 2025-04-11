@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sản phẩm - Shopp</title>
+    <link href="../css/style.css" rel="stylesheet" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      .products-container {
+        margin: 30px 0;
+      }
+
+      .category-heading {
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .filter-panel {
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: #f8f8f8;
+        border-radius: 5px;
+      }
+
+      .filter-heading {
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .price-range {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .price-range input {
+        width: 45%;
+      }
+
+      .product-grid {
+        margin-bottom: 30px;
+      }
+
+      .product-card {
+        margin-bottom: 20px;
+        border: 1px solid #eee;
+        padding: 10px;
+        transition: box-shadow 0.3s;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+      }
+
+      .product-card:hover {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        transform: translateY(-5px);
+      }
+
+      .product-img {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+      }
+
+      .product-img img {
+        width: 100%;
+        transition: transform 0.5s ease, filter 0.3s ease;
+      }
+
+      .product-img:hover img {
+        transform: scale(1.1);
+        filter: brightness(0.8);
+      }
+
+      .product-actions {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        display: flex;
+        justify-content: center;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+
+      .product-img:hover .product-actions {
+        opacity: 1;
+      }
+
+      .product-actions a {
+        color: white;
+        margin: 0 5px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border-radius: 50%;
+        background-color: #1877f2;
+        transition: background-color 0.3s ease;
+      }
+
+      .product-actions a:hover {
+        background-color: #0069d9;
+      }
+
+      .product-info {
+        padding: 10px 0;
+      }
+
+      .product-title {
+        margin-top: 10px;
+        font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .product-price {
+        color: #e74c3c;
+        font-weight: bold;
+        margin: 5px 0;
+      }
+
+      .product-rating {
+        margin-top: 5px;
+      }
+
+      .product-rating i {
+        color: #f39c12;
+      }
+
+      .pagination-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .pagination li a {
+        transition: background-color 0.3s ease;
+      }
+
+      .pagination li a:hover {
+        background-color: #1877f2;
+        color: white;
+      }
+
+      .equal-height {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .equal-height [class*="col-"] {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="header-placeholder"></div>
+
+    <div class="container products-container">
+      <ol class="breadcrumb">
+        <li><a href="../public/index.html">Trang chủ</a></li>
+        <li class="active">Thời trang</li>
+      </ol>
+
+      <h1 class="category-heading">Thời trang</h1>
+
+      <div class="row">
+        <div class="col-md-3">
+          <div class="filter-panel">
+            <h4>Bộ lọc sản phẩm</h4>
+            <hr />
+            <div class="filter-section">
+              <div class="filter-heading">Danh mục</div>
+              <div class="checkbox">
+                <label>
+                  <input
+                    type="checkbox"
+                    data-category="1"
+                    class="category-filter"
+                  />
+                  Thời trang nam
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input
+                    type="checkbox"
+                    data-category="2"
+                    class="category-filter"
+                  />
+                  Thời trang nữ
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input
+                    type="checkbox"
+                    data-category="3"
+                    class="category-filter"
+                  />
+                  Phụ kiện
+                </label>
+              </div>
+            </div>
+            <hr />
+            <div class="filter-section">
+              <div class="filter-heading">Giá</div>
+              <div class="price-range">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="min-price"
+                  placeholder="Min"
+                />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="max-price"
+                  placeholder="Max"
+                />
+              </div>
+              <button class="btn btn-default btn-block" id="apply-price-filter">
+                Áp dụng
+              </button>
+            </div>
+            <hr />
+            <div class="filter-section">
+              <div class="filter-heading">Màu sắc</div>
+              <div class="checkbox">
+                <label> <input type="checkbox" /> Đỏ </label>
+              </div>
+              <div class="checkbox">
+                <label> <input type="checkbox" /> Xanh </label>
+              </div>
+              <div class="checkbox">
+                <label> <input type="checkbox" /> Đen </label>
+              </div>
+              <div class="checkbox">
+                <label> <input type="checkbox" /> Trắng </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="product-search"
+                    placeholder="Tìm kiếm sản phẩm..."
+                  />
+                  <span class="input-group-btn">
+                    <button
+                      class="btn btn-default"
+                      id="search-button"
+                      type="button"
+                    >
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="pull-right">
+                <div class="form-inline">
+                  <label for="sort-by">Sắp xếp theo:</label>
+                  <select class="form-control" id="sort-by">
+                    <option>Mới nhất</option>
+                    <option>Giá thấp đến cao</option>
+                    <option>Giá cao đến thấp</option>
+                    <option>Phổ biến nhất</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row equal-height product-grid">
+            <div class="col-md-4 col-sm-6">
+              <div class="product-item">
+                <div class="product-thumb">
+                  <img
+                    src="https://picsum.photos/id/201/300/300"
+                    alt="Sản phẩm 1"
+                    class="img-responsive"
+                  />
+                  <div class="product-overlay">
+                    <div class="overlay-content">
+                      <a
+                        href="product-detail.html?id=1"
+                        class="btn btn-primary btn-block"
+                        ><i class="fa fa-eye"></i> Chi tiết sản phẩm</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h4 class="product-title">
+                    <a href="product-detail.html?id=1"
+                      >Áo thun nam cổ tròn basic</a
+                    >
+                  </h4>
+                  <p class="product-price">250.000đ</p>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <div class="product-item">
+                <div class="product-thumb">
+                  <img
+                    src="https://picsum.photos/id/202/300/300"
+                    alt="Sản phẩm 2"
+                    class="img-responsive"
+                  />
+                  <div class="product-overlay">
+                    <div class="overlay-content">
+                      <a
+                        href="product-detail.html?id=2"
+                        class="btn btn-primary btn-block"
+                        ><i class="fa fa-eye"></i> Chi tiết sản phẩm</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h4 class="product-title">
+                    <a href="product-detail.html?id=2">Áo sơ mi nam dài tay</a>
+                  </h4>
+                  <p class="product-price">350.000đ</p>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                    <i class="fa fa-star-o"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <div class="product-item">
+                <div class="product-thumb">
+                  <img
+                    src="https://picsum.photos/id/203/300/300"
+                    alt="Sản phẩm 3"
+                    class="img-responsive"
+                  />
+                  <div class="product-overlay">
+                    <div class="overlay-content">
+                      <a
+                        href="product-detail.html?id=3"
+                        class="btn btn-primary btn-block"
+                        ><i class="fa fa-eye"></i> Chi tiết sản phẩm</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h4 class="product-title">
+                    <a href="product-detail.html?id=3"
+                      >Quần jeans nam slim fit</a
+                    >
+                  </h4>
+                  <p class="product-price">450.000đ</p>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <div class="product-item">
+                <div class="product-thumb">
+                  <img
+                    src="https://picsum.photos/id/204/300/300"
+                    alt="Sản phẩm 4"
+                    class="img-responsive"
+                  />
+                  <div class="product-overlay">
+                    <div class="overlay-content">
+                      <a
+                        href="product-detail.html?id=4"
+                        class="btn btn-primary btn-block"
+                        ><i class="fa fa-eye"></i> Chi tiết sản phẩm</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h4 class="product-title">
+                    <a href="product-detail.html?id=4"
+                      >Quần kaki nam regular fit</a
+                    >
+                  </h4>
+                  <p class="product-price">400.000đ</p>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <div class="product-item">
+                <div class="product-thumb">
+                  <img
+                    src="https://picsum.photos/id/205/300/300"
+                    alt="Sản phẩm 5"
+                    class="img-responsive"
+                  />
+                  <div class="product-overlay">
+                    <div class="overlay-content">
+                      <a
+                        href="product-detail.html?id=5"
+                        class="btn btn-primary btn-block"
+                        ><i class="fa fa-eye"></i> Chi tiết sản phẩm</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h4 class="product-title">
+                    <a href="product-detail.html?id=5">Áo khoác nam bomber</a>
+                  </h4>
+                  <p class="product-price">650.000đ</p>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <div class="product-item">
+                <div class="product-thumb">
+                  <img
+                    src="https://picsum.photos/id/206/300/300"
+                    alt="Sản phẩm 6"
+                    class="img-responsive"
+                  />
+                  <div class="product-overlay">
+                    <div class="overlay-content">
+                      <a
+                        href="product-detail.html?id=6"
+                        class="btn btn-primary btn-block"
+                        ><i class="fa fa-eye"></i> Chi tiết sản phẩm</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h4 class="product-title">
+                    <a href="product-detail.html?id=6">Áo hoodie nam basic</a>
+                  </h4>
+                  <p class="product-price">550.000đ</p>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <div class="product-item">
+                <div class="product-thumb">
+                  <img
+                    src="https://picsum.photos/id/207/300/300"
+                    alt="Sản phẩm 7"
+                    class="img-responsive"
+                  />
+                  <div class="product-overlay">
+                    <div class="overlay-content">
+                      <a
+                        href="product-detail.html?id=7"
+                        class="btn btn-primary btn-block"
+                        ><i class="fa fa-eye"></i> Chi tiết sản phẩm</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h4 class="product-title">
+                    <a href="product-detail.html?id=7">Quần short nam casual</a>
+                  </h4>
+                  <p class="product-price">300.000đ</p>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <div class="product-item">
+                <div class="product-thumb">
+                  <img
+                    src="https://picsum.photos/id/208/300/300"
+                    alt="Sản phẩm 8"
+                    class="img-responsive"
+                  />
+                  <div class="product-overlay">
+                    <div class="overlay-content">
+                      <a
+                        href="product-detail.html?id=8"
+                        class="btn btn-primary btn-block"
+                        ><i class="fa fa-eye"></i> Chi tiết sản phẩm</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="product-info">
+                  <h4 class="product-title">
+                    <a href="product-detail.html?id=8">Áo cardigan nam mỏng</a>
+                  </h4>
+                  <p class="product-price">500.000đ</p>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pagination-container">
+            <ul class="pagination">
+              <li class="disabled">
+                <a href="#"><i class="fa fa-angle-double-left"></i></a>
+              </li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li>
+                <a href="#"><i class="fa fa-angle-double-right"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $("#header-placeholder").load("../common/header.html");
+        $("#footer-placeholder").load("../common/footer.html");
+      });
+    </script>
+  </body>
+</html>

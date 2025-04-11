@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chi tiết sản phẩm - Shopp</title>
+    <link href="../css/style.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      .product-images {
+        margin-bottom: 20px;
+      }
+
+      .thumbnail-images {
+        margin-top: 10px;
+      }
+
+      .product-thumbs {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+
+      .product-thumbs img {
+        width: 80px;
+        border: 1px solid #ddd;
+        margin: 0 10px;
+      }
+
+      .product-details h2 {
+        margin-top: 0;
+        color: #333;
+      }
+
+      .product-price {
+        font-size: 24px;
+        color: #e74c3c;
+        margin: 15px 0;
+      }
+
+      .product-description {
+        margin: 20px 0;
+        line-height: 1.6;
+      }
+
+      .btn-quantity {
+        width: 40px;
+        text-align: center;
+      }
+
+      .quantity-controls {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .quantity-controls button {
+        background: #f8f8f8;
+        border: 1px solid #ddd;
+        padding: 5px 10px;
+      }
+
+      .quantity-controls input {
+        width: 50px;
+        text-align: center;
+        margin: 0 5px;
+      }
+
+      .action-buttons {
+        margin: 20px 0;
+      }
+
+      .action-buttons .btn {
+        margin-right: 10px;
+        padding: 10px 20px;
+      }
+
+      .product-meta {
+        margin-top: 30px;
+        color: #777;
+      }
+
+      .related-products {
+        margin-top: 50px;
+      }
+
+      .related-products h3 {
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .color-options label {
+        margin-right: 10px;
+      }
+
+      .size-options label {
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="header-placeholder"></div>
+
+    <div class="container">
+      <ol class="breadcrumb">
+        <li><a href="../public/index.html">Trang chủ</a></li>
+        <li><a href="#">Danh mục</a></li>
+        <li class="active">Tên sản phẩm</li>
+      </ol>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="product-gallery">
+            <div class="product-main-img">
+              <img
+                src="https://picsum.photos/id/220/600/600"
+                alt="Sản phẩm chính"
+                class="img-responsive"
+              />
+            </div>
+            <div class="product-thumbs">
+              <div class="product-thumb active">
+                <img
+                  src="https://picsum.photos/id/220/80/80"
+                  alt="Ảnh nhỏ 1"
+                  class="img-responsive"
+                />
+              </div>
+              <div class="product-thumb">
+                <img
+                  src="https://picsum.photos/id/221/80/80"
+                  alt="Ảnh nhỏ 2"
+                  class="img-responsive"
+                />
+              </div>
+              <div class="product-thumb">
+                <img
+                  src="https://picsum.photos/id/222/80/80"
+                  alt="Ảnh nhỏ 3"
+                  class="img-responsive"
+                />
+              </div>
+              <div class="product-thumb">
+                <img
+                  src="https://picsum.photos/id/223/80/80"
+                  alt="Ảnh nhỏ 4"
+                  class="img-responsive"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="product-info">
+            <h1 class="product-title">Áo thun nam cổ tròn basic</h1>
+            <div class="product-rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-half-o"></i>
+              <span class="rating-count">(25 đánh giá)</span>
+            </div>
+            <div class="product-price">
+              <span class="current-price">250.000đ</span>
+              <span
+                class="old-price"
+                style="text-decoration: line-through; font-size: 16px"
+                >300.000đ</span
+              >
+              <span class="discount-percent">-17%</span>
+            </div>
+            <div class="product-description">
+              <p>
+                Áo thun nam cổ tròn basic với chất liệu cotton 100% cao cấp, mềm
+                mại, thấm hút mồ hôi tốt, thoáng khí. Thiết kế đơn giản, dễ phối
+                đồ, phù hợp với nhiều phong cách.
+              </p>
+            </div>
+            <div class="product-sizes">
+              <h4>Kích thước:</h4>
+              <div class="size-options">
+                <label class="size-option">
+                  <input type="radio" name="size" value="S" />
+                  <span>S</span>
+                </label>
+                <label class="size-option">
+                  <input type="radio" name="size" value="M" checked />
+                  <span>M</span>
+                </label>
+                <label class="size-option">
+                  <input type="radio" name="size" value="L" />
+                  <span>L</span>
+                </label>
+                <label class="size-option">
+                  <input type="radio" name="size" value="XL" />
+                  <span>XL</span>
+                </label>
+              </div>
+            </div>
+            <div class="product-colors">
+              <h4>Màu sắc:</h4>
+              <div class="color-options">
+                <label class="color-option">
+                  <input type="radio" name="color" value="black" checked />
+                  <span>Đen</span>
+                </label>
+                <label class="color-option">
+                  <input type="radio" name="color" value="white" />
+                  <span>Trắng</span>
+                </label>
+                <label class="color-option">
+                  <input type="radio" name="color" value="blue" />
+                  <span>Xanh</span>
+                </label>
+                <label class="color-option">
+                  <input type="radio" name="color" value="red" />
+                  <span>Đỏ</span>
+                </label>
+              </div>
+            </div>
+            <div class="product-quantity">
+              <h4>Số lượng:</h4>
+              <div class="quantity-control">
+                <button class="qty-btn decrease">-</button>
+                <input type="text" class="qty-input" value="1" />
+                <button class="qty-btn increase">+</button>
+              </div>
+            </div>
+            <div class="product-actions">
+              <button class="btn btn-primary btn-add-to-cart">
+                <i class="fa fa-shopping-cart"></i> Thêm vào giỏ
+              </button>
+              <button class="btn btn-outline-primary btn-buy-now">
+                Mua ngay
+              </button>
+              <button class="btn btn-outline-secondary btn-wishlist">
+                <i class="fa fa-heart-o"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-details-tabs">
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active">
+            <a
+              href="#description"
+              aria-controls="description"
+              role="tab"
+              data-toggle="tab"
+              >Mô tả</a
+            >
+          </li>
+          <li role="presentation">
+            <a
+              href="#specifications"
+              aria-controls="specifications"
+              role="tab"
+              data-toggle="tab"
+              >Thông số</a
+            >
+          </li>
+          <li role="presentation">
+            <a
+              href="#reviews"
+              aria-controls="reviews"
+              role="tab"
+              data-toggle="tab"
+              >Đánh giá (25)</a
+            >
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="description">
+            <h3>Mô tả sản phẩm</h3>
+            <p>
+              Áo thun nam cổ tròn basic được thiết kế theo phong cách tối giản,
+              hiện đại, dễ dàng phối đồ với nhiều loại trang phục khác nhau. Áo
+              được may từ chất liệu cotton 100% cao cấp, mềm mại, thấm hút mồ
+              hôi tốt, thoáng khí.
+            </p>
+            <p>
+              Sản phẩm phù hợp với nhiều hoạt động hàng ngày như đi học, đi làm,
+              dạo phố, gặp gỡ bạn bè... Đặc biệt, áo có khả năng giữ form dáng
+              tốt, không bị giãn sau nhiều lần giặt.
+            </p>
+            <h4>Đặc điểm nổi bật:</h4>
+            <ul>
+              <li>Chất liệu cotton 100% cao cấp</li>
+              <li>Thiết kế cổ tròn, tay ngắn</li>
+              <li>Form dáng regular fit, thoải mái</li>
+              <li>Đường may tỉ mỉ, chắc chắn</li>
+              <li>Màu sắc đa dạng, dễ phối đồ</li>
+              <li>Phù hợp với mọi vóc dáng</li>
+            </ul>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="specifications">
+            <h3>Thông số kỹ thuật</h3>
+            <table class="table table-bordered specifications-table">
+              <tbody>
+                <tr>
+                  <th>Thương hiệu</th>
+                  <td>SHOPPER</td>
+                </tr>
+                <tr>
+                  <th>Chất liệu</th>
+                  <td>Cotton 100%</td>
+                </tr>
+                <tr>
+                  <th>Kiểu dáng</th>
+                  <td>Regular fit</td>
+                </tr>
+                <tr>
+                  <th>Cổ áo</th>
+                  <td>Cổ tròn</td>
+                </tr>
+                <tr>
+                  <th>Tay áo</th>
+                  <td>Tay ngắn</td>
+                </tr>
+                <tr>
+                  <th>Xuất xứ</th>
+                  <td>Việt Nam</td>
+                </tr>
+                <tr>
+                  <th>Hướng dẫn giặt</th>
+                  <td>
+                    Giặt máy ở nhiệt độ thường, không tẩy, không sấy khô, ủi ở
+                    nhiệt độ thấp
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="reviews">
+            <h3>Đánh giá từ khách hàng</h3>
+            <div class="reviews-summary">
+              <div class="average-rating">
+                <div class="rating-number">4.5</div>
+                <div class="rating-stars">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star-half-o"></i>
+                </div>
+                <div class="total-reviews">Dựa trên 25 đánh giá</div>
+              </div>
+              <div class="rating-breakdown">
+                <div class="rating-bar">
+                  <span class="rating-level">5 sao</span>
+                  <div class="progress">
+                    <div
+                      class="progress-bar"
+                      role="progressbar"
+                      style="width: 70%"
+                    ></div>
+                  </div>
+                  <span class="rating-percent">70%</span>
+                </div>
+                <div class="rating-bar">
+                  <span class="rating-level">4 sao</span>
+                  <div class="progress">
+                    <div
+                      class="progress-bar"
+                      role="progressbar"
+                      style="width: 20%"
+                    ></div>
+                  </div>
+                  <span class="rating-percent">20%</span>
+                </div>
+                <div class="rating-bar">
+                  <span class="rating-level">3 sao</span>
+                  <div class="progress">
+                    <div
+                      class="progress-bar"
+                      role="progressbar"
+                      style="width: 7%"
+                    ></div>
+                  </div>
+                  <span class="rating-percent">7%</span>
+                </div>
+                <div class="rating-bar">
+                  <span class="rating-level">2 sao</span>
+                  <div class="progress">
+                    <div
+                      class="progress-bar"
+                      role="progressbar"
+                      style="width: 2%"
+                    ></div>
+                  </div>
+                  <span class="rating-percent">2%</span>
+                </div>
+                <div class="rating-bar">
+                  <span class="rating-level">1 sao</span>
+                  <div class="progress">
+                    <div
+                      class="progress-bar"
+                      role="progressbar"
+                      style="width: 1%"
+                    ></div>
+                  </div>
+                  <span class="rating-percent">1%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="customer-reviews">
+              <div class="review-item">
+                <div class="reviewer-info">
+                  <img
+                    src="https://picsum.photos/id/230/50/50"
+                    alt="Avatar"
+                    class="reviewer-avatar"
+                  />
+                  <div class="reviewer-meta">
+                    <h5 class="reviewer-name">Nguyễn Văn A</h5>
+                    <div class="review-date">12/04/2023</div>
+                  </div>
+                </div>
+                <div class="review-rating">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <div class="review-content">
+                  <p>
+                    Sản phẩm rất tốt, chất liệu mềm mại, thoáng mát. Màu sắc
+                    đúng như hình, form áo đẹp, vừa vặn. Sẽ mua thêm nhiều màu
+                    khác.
+                  </p>
+                </div>
+              </div>
+              <div class="review-item">
+                <div class="reviewer-info">
+                  <img
+                    src="https://picsum.photos/id/231/50/50"
+                    alt="Avatar"
+                    class="reviewer-avatar"
+                  />
+                  <div class="reviewer-meta">
+                    <h5 class="reviewer-name">Trần Thị B</h5>
+                    <div class="review-date">10/04/2023</div>
+                  </div>
+                </div>
+                <div class="review-rating">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star-o"></i>
+                </div>
+                <div class="review-content">
+                  <p>
+                    Áo đẹp, nhưng size hơi nhỏ so với bảng size. Các bạn nên
+                    chọn size lớn hơn 1 cỡ so với bình thường.
+                  </p>
+                </div>
+              </div>
+              <div class="review-item">
+                <div class="reviewer-info">
+                  <img
+                    src="https://picsum.photos/id/232/50/50"
+                    alt="Avatar"
+                    class="reviewer-avatar"
+                  />
+                  <div class="reviewer-meta">
+                    <h5 class="reviewer-name">Lê Văn C</h5>
+                    <div class="review-date">05/04/2023</div>
+                  </div>
+                </div>
+                <div class="review-rating">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star-o"></i>
+                  <i class="fa fa-star-o"></i>
+                </div>
+                <div class="review-content">
+                  <p>
+                    Chất lượng áo ổn, nhưng màu không đúng như hình. Hơi thất
+                    vọng một chút.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="write-review">
+              <h4>Viết đánh giá của bạn</h4>
+              <form class="review-form">
+                <div class="form-group">
+                  <label>Đánh giá của bạn:</label>
+                  <div class="rating-select">
+                    <i class="fa fa-star-o rating-star" data-rating="1"></i>
+                    <i class="fa fa-star-o rating-star" data-rating="2"></i>
+                    <i class="fa fa-star-o rating-star" data-rating="3"></i>
+                    <i class="fa fa-star-o rating-star" data-rating="4"></i>
+                    <i class="fa fa-star-o rating-star" data-rating="5"></i>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="review-title">Tiêu đề:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="review-title"
+                    placeholder="Tiêu đề đánh giá của bạn"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="review-content">Nội dung:</label>
+                  <textarea
+                    class="form-control"
+                    id="review-content"
+                    rows="5"
+                    placeholder="Viết đánh giá của bạn về sản phẩm"
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                  Gửi đánh giá
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="related-products">
+        <h3>Sản phẩm liên quan</h3>
+        <div class="row">
+          <div class="col-md-3 col-sm-6">
+            <div class="product-item">
+              <div class="product-thumb">
+                <img
+                  src="https://picsum.photos/id/240/300/300"
+                  alt="Sản phẩm liên quan 1"
+                  class="img-responsive"
+                />
+                <div class="product-overlay">
+                  <div class="overlay-content">
+                    <a href="#" class="btn btn-primary"
+                      ><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a
+                    >
+                    <a href="product-detail.html" class="btn btn-default"
+                      ><i class="fa fa-eye"></i> Chi tiết</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="product-content">
+                <h3 class="product-title">
+                  <a href="product-detail.html">Áo polo nam cơ bản</a>
+                </h3>
+                <div class="product-price">300.000đ</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="product-item">
+              <div class="product-thumb">
+                <img
+                  src="https://picsum.photos/id/241/300/300"
+                  alt="Sản phẩm liên quan 2"
+                  class="img-responsive"
+                />
+                <div class="product-overlay">
+                  <div class="overlay-content">
+                    <a href="#" class="btn btn-primary"
+                      ><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a
+                    >
+                    <a href="product-detail.html" class="btn btn-default"
+                      ><i class="fa fa-eye"></i> Chi tiết</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="product-content">
+                <h3 class="product-title">
+                  <a href="product-detail.html">Áo thun nam có cổ</a>
+                </h3>
+                <div class="product-price">280.000đ</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="product-item">
+              <div class="product-thumb">
+                <img
+                  src="https://picsum.photos/id/242/300/300"
+                  alt="Sản phẩm liên quan 3"
+                  class="img-responsive"
+                />
+                <div class="product-overlay">
+                  <div class="overlay-content">
+                    <a href="#" class="btn btn-primary"
+                      ><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a
+                    >
+                    <a href="product-detail.html" class="btn btn-default"
+                      ><i class="fa fa-eye"></i> Chi tiết</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="product-content">
+                <h3 class="product-title">
+                  <a href="product-detail.html">Áo thun dài tay nam</a>
+                </h3>
+                <div class="product-price">320.000đ</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="product-item">
+              <div class="product-thumb">
+                <img
+                  src="https://picsum.photos/id/243/300/300"
+                  alt="Sản phẩm liên quan 4"
+                  class="img-responsive"
+                />
+                <div class="product-overlay">
+                  <div class="overlay-content">
+                    <a href="#" class="btn btn-primary"
+                      ><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a
+                    >
+                    <a href="product-detail.html" class="btn btn-default"
+                      ><i class="fa fa-eye"></i> Chi tiết</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="product-content">
+                <h3 class="product-title">
+                  <a href="product-detail.html">Áo thun nam in họa tiết</a>
+                </h3>
+                <div class="product-price">270.000đ</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#header-placeholder").load("../common/header.html");
+        $("#footer-placeholder").load("../common/footer.html");
+      });
+    </script>
+  </body>
+</html>
